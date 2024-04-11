@@ -32,4 +32,5 @@ h1 {
     background to prevent flashing on load
   */
   background-color: skyblue;
+  z-index: 0;
 }
