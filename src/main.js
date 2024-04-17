@@ -13,10 +13,12 @@ function main() {
   world.render();
 }
 
-// document.querySelector('#render-cube-btn').addEventListener('click', () => {
-//   if (!world) {
-//     main();
-//   }
-// });
+document.querySelector('#render-cube-btn').addEventListener('click', () => {
+  if (!world) {
+    main();
+  } else {
+    alert('场景已渲染，请先销毁再渲染');
+  }
+});
 
 main();
