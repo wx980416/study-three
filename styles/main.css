@@ -31,6 +31,13 @@ h1 {
     Set the container's background color to the same as the scene's
     background to prevent flashing on load
   */
-  background-color: skyblue;
+  background-color: #fff;
   z-index: 0;
+}
+
+#render-cube-btn {
+  position: fixed;
+  z-index: 999;
+  top: 10px;
+  right: 10px;
 }
