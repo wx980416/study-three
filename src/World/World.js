@@ -1,8 +1,10 @@
 import { createCamera } from './components/camera.js';
+import { createAxesHelper, createGridHelper } from './components/helpers.js';
 import { createCube } from './components/cube.js';
 import { createScene } from './components/scene.js';
 import { createLights } from './components/lights.js';
 import { createMeshGroup } from './components/meshGroup.js';
+import { Train } from './components/Train/Train.js';
 
 import { createControls } from './systems/controls.js';
 import { createRenderer } from './systems/renderer.js';
@@ -28,12 +30,15 @@ class World {
     // const light = createLights();
     const { ambientLight, mainLight } = createLights();
     const meshGroup = createMeshGroup();
+    const train = new Train();
 
     // loop.updatables.push(cube, camera);
-    loop.updatables.push(controls, meshGroup);
+    // loop.updatables.push(controls, meshGroup);
+    loop.updatables.push(controls, train);
 
     // scene.add(cube, ambientLight, mainLight);
-    scene.add(meshGroup, ambientLight, mainLight);
+    // scene.add(meshGroup, ambientLight, mainLight);
+    scene.add(train, ambientLight, mainLight);
 
     const resizer = new Resizer(container, camera, renderer);
     // 现在循环正在运行，每当我们调整窗口大小时，都会在循环的下一次迭代中生成一个新帧。
@@ -41,6 +46,8 @@ class World {
     // resizer.onResize = () => {
     //   this.render();
     // };
+
+    scene.add(createAxesHelper(), createGridHelper());
   }
 
   render() {

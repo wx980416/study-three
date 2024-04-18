@@ -11,7 +11,7 @@ function createMeshGroup() {
   // but cannot be seen itself
   const group = new Group();
 
-  const geometry = new SphereGeometry(0.25, 100, 100);
+  const geometry = new SphereGeometry(0.25, 16, 16);
 
   const material = new MeshStandardMaterial({
     color: 'indigo',
