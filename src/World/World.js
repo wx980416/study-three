@@ -24,12 +24,13 @@ class World {
 
     const controls = createControls(camera, renderer.domElement);
     const cube = createCube();
-    const light = createLights();
+    // const light = createLights();
+    const { ambientLight, mainLight } = createLights();
 
     // loop.updatables.push(cube, camera);
     loop.updatables.push(controls);
 
-    scene.add(cube, light);
+    scene.add(cube, ambientLight, mainLight);
 
     const resizer = new Resizer(container, camera, renderer);
     // 现在循环正在运行，每当我们调整窗口大小时，都会在循环的下一次迭代中生成一个新帧。
