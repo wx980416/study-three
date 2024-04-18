@@ -10,7 +10,13 @@ function main() {
   world = new World(container);
 
   // 渲染场景
-  world.render();
+  // produce a single frame (render on demand)
+  // zh: 立即渲染一次场景
+  // world.render();
+
+  // start the loop (produce a stream of frames)
+  // zh: 开始渲染循环
+  world.start();
 }
 
 document.querySelector('#render-cube-btn').addEventListener('click', () => {
