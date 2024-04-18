@@ -1,19 +1,35 @@
 import {
   BoxGeometry,
+  SphereGeometry,
   Mesh,
   MeshBasicMaterial,
   MeshStandardMaterial,
   MeshPhongMaterial,
   MathUtils,
+  TextureLoader,
 } from 'three';
+
+function createMaterial() {
+  // create a texture loader.
+  const textureLoader = new TextureLoader();
+
+  // load a texture
+  const texture = textureLoader.load('/assets/textures/uv-test-bw.png');
+  // const texture = textureLoader.load('/assets/textures/uv-test-col.png');
+
+  // create a "standard" material
+  // const material = new MeshStandardMaterial({ color: 'purple' });
+  const material = new MeshStandardMaterial({ map: texture });
+
+  return material;
+}
 
 function createCube() {
   const geometry = new BoxGeometry(2, 2, 2);
+  // const geometry = new SphereGeometry(2);
 
   // const material = new MeshBasicMaterial();
-  const material = new MeshStandardMaterial({
-    color: '#ff0bff',
-  });
+  const material = new createMaterial();
 
   const cube = new Mesh(geometry, material);
 
