@@ -25,6 +25,9 @@ class World {
     console.log(scene.children);
 
     const resizer = new Resizer(container, camera, renderer);
+    resizer.onResize = () => {
+      this.render();
+    };
   }
 
   render() {
