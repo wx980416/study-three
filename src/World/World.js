@@ -2,6 +2,7 @@ import { createCamera } from './components/camera.js';
 import { createCube } from './components/cube.js';
 import { createScene } from './components/scene.js';
 import { createLights } from './components/lights.js';
+import { createMeshGroup } from './components/meshGroup.js';
 
 import { createControls } from './systems/controls.js';
 import { createRenderer } from './systems/renderer.js';
@@ -26,11 +27,13 @@ class World {
     const cube = createCube();
     // const light = createLights();
     const { ambientLight, mainLight } = createLights();
+    const meshGroup = createMeshGroup();
 
     // loop.updatables.push(cube, camera);
-    loop.updatables.push(controls);
+    loop.updatables.push(controls, meshGroup);
 
-    scene.add(cube, ambientLight, mainLight);
+    // scene.add(cube, ambientLight, mainLight);
+    scene.add(meshGroup, ambientLight, mainLight);
 
     const resizer = new Resizer(container, camera, renderer);
     // 现在循环正在运行，每当我们调整窗口大小时，都会在循环的下一次迭代中生成一个新帧。

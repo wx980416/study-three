@@ -5,11 +5,7 @@ function createCamera() {
 
   camera.position.set(0, 0, 10);
 
-  camera.tick = (delta) => {
-    // if (camera.position.z < 20) {
-    //   camera.position.z += 0.1;
-    // }
-  };
+  camera.tick = (delta) => {};
 
   return camera;
 }
