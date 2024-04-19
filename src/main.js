@@ -2,7 +2,7 @@ import { World } from './World/World.js';
 
 let world;
 
-function main() {
+async function main() {
   // 获取场景容器
   const container = document.querySelector('#scene-container');
 
@@ -13,6 +13,8 @@ function main() {
   // produce a single frame (render on demand)
   // zh: 立即渲染一次场景
   // world.render();
+
+  await world.init();
 
   // start the loop (produce a stream of frames)
   // zh: 开始渲染循环
@@ -27,4 +29,4 @@ document.querySelector('#render-cube-btn').addEventListener('click', () => {
   }
 });
 
-main();
+main().catch((error) => console.error(error));

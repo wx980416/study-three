@@ -5,6 +5,7 @@ import { createScene } from './components/scene.js';
 import { createLights } from './components/lights.js';
 import { createMeshGroup } from './components/meshGroup.js';
 import { Train } from './components/Train/Train.js';
+import { loadBirds } from './components/birds/birds.js';
 
 import { createControls } from './systems/controls.js';
 import { createRenderer } from './systems/renderer.js';
@@ -16,6 +17,7 @@ let camera;
 let scene;
 let renderer;
 let loop;
+let controls;
 
 class World {
   constructor(container) {
@@ -25,7 +27,7 @@ class World {
     loop = new Loop(camera, scene, renderer);
     container.append(renderer.domElement);
 
-    const controls = createControls(camera, renderer.domElement);
+    controls = createControls(camera, renderer.domElement);
     const cube = createCube();
     // const light = createLights();
     const { ambientLight, mainLight } = createLights();
@@ -35,10 +37,10 @@ class World {
     // loop.updatables.push(cube, camera);
     // loop.updatables.push(controls, meshGroup);
     loop.updatables.push(controls, train);
-
+    scene.add(ambientLight, mainLight);
     // scene.add(cube, ambientLight, mainLight);
     // scene.add(meshGroup, ambientLight, mainLight);
-    scene.add(train, ambientLight, mainLight);
+    // scene.add(train, ambientLight, mainLight);
 
     const resizer = new Resizer(container, camera, renderer);
     // 现在循环正在运行，每当我们调整窗口大小时，都会在循环的下一次迭代中生成一个新帧。
@@ -48,6 +50,16 @@ class World {
     // };
 
     scene.add(createAxesHelper(), createGridHelper());
+  }
+
+  async init() {
+    // asynchronous setup here
+    // load bird models
+    const { parrot, flamingo, stork } = await loadBirds();
+
+    controls.target.copy(parrot.position);
+
+    scene.add(parrot, flamingo, stork);
   }
 
   render() {
